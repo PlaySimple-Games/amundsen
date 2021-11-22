@@ -1,4 +1,4 @@
-IMAGE := amundsen-staging-search
+IMAGE := 981935913893.dkr.ecr.us-west-2.amazonaws.com/amundsen-staging-search
 VERSION:= $(shell grep -m 1 '__version__' setup.py | cut -d '=' -f 2 | tr -d "'" | tr -d '[:space:]')
 OIDC_IMAGE := ${IMAGE}-oidc
 .PHONY: test
@@ -57,10 +57,11 @@ install_deps:
 .PHONY: oidc-image
 oidc-image:
 	cd .. && docker build -f Dockerfile.search.public --target=oidc-release -t ${OIDC_IMAGE}:${VERSION} . && cd search
-	docker tag ${OIDC_IMAGE}:${VERSION} 981935913893.dkr.ecr.us-west-2.amazonaws.com/${OIDC_IMAGE}:latest
+	docker tag ${OIDC_IMAGE}:${VERSION} ${OIDC_IMAGE}:latest
+
 
 .PHONY: push-oidc-image
 push-oidc-image:
 	aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 981935913893.dkr.ecr.us-west-2.amazonaws.com
-	docker push 981935913893.dkr.ecr.us-west-2.amazonaws.com/${OIDC_IMAGE}:latest
-	docker push 981935913893.dkr.ecr.us-west-2.amazonaws.com/${OIDC_IMAGE}:${VERSION}
+	docker push ${OIDC_IMAGE}:latest
+	docker push ${OIDC_IMAGE}:${VERSION}

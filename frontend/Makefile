@@ -37,6 +37,7 @@ push-image-version:
 
 .PHONY: push-image
 push-image:
+	aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 981935913893.dkr.ecr.us-west-2.amazonaws.com
 	docker push ${IMAGE}:latest
 
 .PHONY: oidc-image
@@ -46,7 +47,7 @@ oidc-image:
 
 .PHONY: push-odic-image
 push-oidc-image:
-    aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 981935913893.dkr.ecr.us-west-2.amazonaws.com
+	aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 981935913893.dkr.ecr.us-west-2.amazonaws.com
 	docker push ${OIDC_IMAGE}:latest
 	docker push ${OIDC_IMAGE}:${VERSION}
 

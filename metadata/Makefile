@@ -18,6 +18,7 @@ lint:
 .PHONY: mypy
 mypy:
 	mypy --ignore-missing-imports --follow-imports=skip --strict-optional --warn-no-return .
+fronte-nd : 3.1.0, 2.0.0, search2.4.1
 
 .PHONY: isort
 isort:
@@ -40,11 +41,12 @@ image-version:
 
 .PHONY: push-image-version
 push-image-version:
-    aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 981935913893.dkr.ecr.us-west-2.amazonaws.com
+	aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 981935913893.dkr.ecr.us-west-2.amazonaws.com
 	docker push ${IMAGE}:${VERSION}
 
 .PHONY: push-image
 push-image:
+	aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 981935913893.dkr.ecr.us-west-2.amazonaws.com
 	docker push ${IMAGE}:latest
 
 .PHONY: oidc-image
@@ -54,7 +56,7 @@ oidc-image:
 
 .PHONY: push-odic-image
 push-oidc-image:
-    aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 981935913893.dkr.ecr.us-west-2.amazonaws.com
+	aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 981935913893.dkr.ecr.us-west-2.amazonaws.com
 	docker push ${OIDC_IMAGE}:${VERSION}
 	docker push ${OIDC_IMAGE}:latest
 

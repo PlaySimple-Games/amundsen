@@ -21,21 +21,21 @@ echo -e "Step 2. booting up amundsen"
 
 helm install amundsen ./templates/helm --values ./templates/helm/values.yaml \
         --set oidc.enabled=false \
-        --set search.image=amundsendev/amundsen-search \
-        --set search.imageTag=2.11.1 \
+        --set search.image=981935913893.dkr.ecr.us-west-2.amazonaws.com/amundsen-staging-search \
+        --set search.imageTag=latest \
         --set search.imagePullSecrets[0].name=ecr-registry-secrets \
         --set frontEnd.imagePullSecrets[0].name=ecr-registry-secrets \
         --set metadata.imagePullSecrets[0].name=ecr-registry-secrets \
         --set search.proxy.endpoint=${SEARCH_ENDPOINT} \
         --set search.proxy.user=elastic \
         --set search.proxy.password=${SEARCH_PWD} \
-        --set metadata.image=amundsendev/amundsen-metadata \
-        --set metadata.imageTag=3.9.0 \
+        --set metadata.image=981935913893.dkr.ecr.us-west-2.amazonaws.com/amundsen-staging-metadata \
+        --set metadata.imageTag=latest \
         --set metadata.proxy.host=${META_HOST} \
         --set metadata.proxy.user=neo4j \
         --set metadata.proxy.password=${META_PWD}\
-        --set frontEnd.image=amundsendev/amundsen-frontend \
-        --set frontEnd.imageTag=3.12.0 \
+        --set frontEnd.image=981935913893.dkr.ecr.us-west-2.amazonaws.com/amundsen-staging-frontend \
+        --set frontEnd.imageTag=latest \
         --set frontEnd.config.class=amundsen_application.config.TestConfig \
         --set elasticsearch.enabled=false \
         --set neo4j.enabled=false \

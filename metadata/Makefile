@@ -40,6 +40,7 @@ image-version:
 
 .PHONY: push-image-version
 push-image-version:
+    aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 981935913893.dkr.ecr.us-west-2.amazonaws.com
 	docker push ${IMAGE}:${VERSION}
 
 .PHONY: push-image

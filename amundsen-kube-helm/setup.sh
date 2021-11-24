@@ -17,35 +17,26 @@ TRIM "${POSTGRES_CREDS_ARR[7]}"; META_HOST="${TRIMMED}"
 
 echo -e "Step 1. uninstalling existing amundsen svc"
 helm uninstall amundsen -n amundsen
-echo -e "Step 2. creating docker image for search component"
-cd ../search && make oidc-image && make push-oidc-image && cd ../amundsen-kube-helm
-echo -e "Step 3. booting up amundsen"
+echo -e "Step 2. booting up amundsen"
 
 helm install amundsen ./templates/helm --values ./templates/helm/values.yaml \
-        --set oidc.enabled=true \
-        --set oidc.frontend.client_id=${OIDC_CLIENT_ID} \
-        --set oidc.frontend.client_secret=${OIDC_CLIENT_SECRET} \
-        --set oidc.metadata.client_id=${OIDC_CLIENT_ID} \
-        --set oidc.metadata.client_secret=${OIDC_CLIENT_SECRET} \
-        --set oidc.search.client_id=${OIDC_CLIENT_ID} \
-        --set oidc.search.client_secret=${OIDC_CLIENT_SECRET} \
-        --set oidc.configs.FLASK_OIDC_SCOPES="openid email profile" \
-        --set search.image=981935913893.dkr.ecr.us-west-2.amazonaws.com/amundsen-staging-search-oidc \
-        --set search.imageTag=latest \
+        --set oidc.enabled=false \
+        --set search.image=amundsendev/amundsen-search \
+        --set search.imageTag=2.11.1 \
         --set search.imagePullSecrets[0].name=ecr-registry-secrets \
         --set frontEnd.imagePullSecrets[0].name=ecr-registry-secrets \
         --set metadata.imagePullSecrets[0].name=ecr-registry-secrets \
         --set search.proxy.endpoint=${SEARCH_ENDPOINT} \
         --set search.proxy.user=elastic \
         --set search.proxy.password=${SEARCH_PWD} \
-        --set metadata.image=981935913893.dkr.ecr.us-west-2.amazonaws.com/amundsen-staging-metadata-oidc \
-        --set metadata.imageTag=latest \
+        --set metadata.image=amundsendev/amundsen-metadata \
+        --set metadata.imageTag=3.9.0 \
         --set metadata.proxy.host=${META_HOST} \
         --set metadata.proxy.user=neo4j \
         --set metadata.proxy.password=${META_PWD}\
-        --set frontEnd.image=981935913893.dkr.ecr.us-west-2.amazonaws.com/amundsen-staging-frontend-oidc \
-        --set frontEnd.imageTag=latest \
-        --set frontEnd.config.class=amundsen_application.oidc_config.OidcConfig \
+        --set frontEnd.image=amundsendev/amundsen-frontend \
+        --set frontEnd.imageTag=3.12.0 \
+        --set frontEnd.config.class=amundsen_application.config.TestConfig \
         --set elasticsearch.enabled=false \
         --set neo4j.enabled=false \
         -n amundsen

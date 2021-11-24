@@ -36,6 +36,14 @@ IS_STATSD_ON = 'IS_STATSD_ON'
 USER_OTHER_KEYS = 'USER_OTHER_KEYS'
 
 
+def get_user_details(user_id):
+    user_info = {
+        'email': user_id,
+        'user_id': user_id,
+    }
+    return user_info
+
+
 class Config:
     LOG_FORMAT = '%(asctime)s.%(msecs)03d [%(levelname)s] %(module)s.%(funcName)s:%(lineno)d (%(process)d:' \
                  '%(threadName)s) - %(message)s'
@@ -68,7 +76,7 @@ class Config:
 
     SWAGGER_ENABLED = os.environ.get('SWAGGER_ENABLED', False)
 
-    USER_DETAIL_METHOD = None   # type: Optional[function]
+    USER_DETAIL_METHOD = get_user_details
 
     RESOURCE_REPORT_CLIENT = None  # type: Optional[function]
 
@@ -152,10 +160,10 @@ class MySQLConfig(LocalConfig):
     PROXY_CLIENT = PROXY_CLIENTS['MYSQL']
     PROXY_CLI = PROXY_CLIS['MYSQL']
 
-    PROXY_HOST = None   # type: ignore
-    PROXY_PORT = None   # type: ignore
-    PROXY_USER = None   # type: ignore
-    PROXY_PASSWORD = None   # type: ignore
+    PROXY_HOST = None  # type: ignore
+    PROXY_PORT = None  # type: ignore
+    PROXY_USER = None  # type: ignore
+    PROXY_PASSWORD = None  # type: ignore
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI', 'mysql://user:password@127.0.0.1:3306/amundsen')
     PROXY_CLIENT_KWARGS: Dict[str, Any] = {

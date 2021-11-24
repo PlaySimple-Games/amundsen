@@ -1,4 +1,4 @@
-IMAGE := amundsendev/amundsen-metadata
+IMAGE := 981935913893.dkr.ecr.us-west-2.amazonaws.com/amundsen-staging-metadata
 OIDC_IMAGE := ${IMAGE}-oidc
 VERSION:= $(shell grep -m 1 '__version__' setup.py | cut -d '=' -f 2 | tr -d "'" | tr -d '[:space:]')
 
@@ -53,6 +53,7 @@ oidc-image:
 
 .PHONY: push-odic-image
 push-oidc-image:
+    aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 981935913893.dkr.ecr.us-west-2.amazonaws.com
 	docker push ${OIDC_IMAGE}:${VERSION}
 	docker push ${OIDC_IMAGE}:latest
 

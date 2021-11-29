@@ -15,7 +15,7 @@ echo -e "Step 1. uninstalling existing amundsen svc"
 helm uninstall amundsen -n amundsen
 echo -e "Step 2. booting up amundsen"
 
-helm install amundsen ./templates/helm --values ./templates/helm/values.yaml \
+helm install amundsen ./../templates/helm --values ./../templates/helm/values.yaml \
         --set oidc.enabled=false \
         --set search.image=981935913893.dkr.ecr.us-west-2.amazonaws.com/amundsen-staging-search \
         --set search.imageTag=latest \

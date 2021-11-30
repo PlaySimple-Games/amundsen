@@ -1,8 +1,26 @@
 // This file should be used to add new config variables or overwrite defaults from config-default.ts
 
-import { AppConfigCustom } from './config-types';
+import {AppConfigCustom, BadgeStyle} from './config-types';
 
 const configCustom: AppConfigCustom = {
+  badges: {
+      'gold': {
+          style: BadgeStyle.INFO,
+          displayName: 'Gold',
+      },
+      'silver': {
+          style: BadgeStyle.INFO,
+          displayName: 'Silver',
+      },
+      'bronze': {
+          style: BadgeStyle.INFO,
+          displayName: 'Bronze',
+      },
+      'partition-column': {
+          style: BadgeStyle.DEFAULT,
+          displayName: 'Partition Column',
+      },
+  },
   browse: {
     curatedTags: [],
     showAllTags: true,

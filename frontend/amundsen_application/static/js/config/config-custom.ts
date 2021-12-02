@@ -15,11 +15,7 @@ const configCustom: AppConfigCustom = {
       'bronze': {
           style: BadgeStyle.INFO,
           displayName: 'Bronze',
-      },
-      'partition-column': {
-          style: BadgeStyle.DEFAULT,
-          displayName: 'Partition Column',
-      },
+      }
   },
   browse: {
     curatedTags: [],

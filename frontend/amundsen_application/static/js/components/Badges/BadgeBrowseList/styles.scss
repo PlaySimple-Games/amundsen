@@ -8,11 +8,14 @@
   margin: 32px 0;
 
   .badge-list {
-    display: block;
+    //display: block;
     font-weight: $font-weight-body-regular;
     margin-top: $spacer-2;
     margin-bottom: $spacer-2;
     line-height: 2em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
 }
 

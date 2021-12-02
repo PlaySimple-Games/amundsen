@@ -36,6 +36,12 @@
 
   .label {
     padding: 0 0;
+    height: 40px;
+    width: 96px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   [class^='badge-overlay-'] {
@@ -108,6 +114,13 @@
 
   .label {
     padding: 0 0;
+
+    height: 40px;
+    width: 96px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   [class^='badge-overlay-'] {

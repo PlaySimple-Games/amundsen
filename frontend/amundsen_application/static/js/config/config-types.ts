@@ -197,6 +197,9 @@ export enum BadgeStyle {
   PRIMARY = 'primary',
   SUCCESS = 'positive',
   WARNING = 'warning',
+  GOLD = 'gold',
+  SILVER = 'siver',
+  BRONZE = 'bronze',
 }
 
 export interface BadgeStyleConfig {

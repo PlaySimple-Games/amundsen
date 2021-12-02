@@ -198,7 +198,7 @@ export enum BadgeStyle {
   SUCCESS = 'positive',
   WARNING = 'warning',
   GOLD = 'gold',
-  SILVER = 'siver',
+  SILVER = 'silver',
   BRONZE = 'bronze',
 }
 

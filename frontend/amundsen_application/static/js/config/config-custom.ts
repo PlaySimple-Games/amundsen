@@ -5,15 +5,15 @@ import {AppConfigCustom, BadgeStyle} from './config-types';
 const configCustom: AppConfigCustom = {
   badges: {
       'gold': {
-          style: BadgeStyle.INFO,
+          style: BadgeStyle.GOLD,
           displayName: 'Gold',
       },
       'silver': {
-          style: BadgeStyle.INFO,
+          style: BadgeStyle.SILVER,
           displayName: 'Silver',
       },
       'bronze': {
-          style: BadgeStyle.INFO,
+          style: BadgeStyle.BRONZE,
           displayName: 'Bronze',
       }
   },
